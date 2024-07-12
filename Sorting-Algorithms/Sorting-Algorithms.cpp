@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <string>
 
 const int delay = 100;
 
@@ -120,7 +121,7 @@ void Introduction() {
         visualizeBubbleSort(data);
         break;
     case 2:
-        visualizeSelectionSort(data)
+        visualizeSelectionSort(data);
         break;
     case 3:
         visualizeInsertionSort(data);
