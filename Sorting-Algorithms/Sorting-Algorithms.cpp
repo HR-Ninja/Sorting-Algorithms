@@ -4,6 +4,8 @@
 #include <chrono>
 #include <thread>
 
+const int delay = 100;
+
 // Function to print bars representing elements
 void printBars(const std::vector<int>& data) {
     int maxElement = *std::max_element(data.begin(), data.end());
@@ -20,7 +22,6 @@ void printBars(const std::vector<int>& data) {
 
 // Function to visualize Bubble Sort
 void visualizeBubbleSort(std::vector<int>& data) {
-    constexpr int delayMillis = 100; // Delay between each step in milliseconds
 
     std::cout << "Bubble Sort Sorting:" << std::endl;
     for (int i = 0; i < data.size(); ++i) {
@@ -32,7 +33,7 @@ void visualizeBubbleSort(std::vector<int>& data) {
         for (int j = 0; j < data.size() - 1 - i; ++j) {
             if (data[j] > data[j + 1]) {
                 std::swap(data[j], data[j + 1]);
-                std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
+                std::this_thread::sleep_for(std::chrono::milliseconds(delay));
                 system("cls"); // Clear console
                 std::cout << "Bubble Sort Sorting:" << std::endl;
                 printBars(data);
@@ -46,7 +47,6 @@ void visualizeBubbleSort(std::vector<int>& data) {
 
 // Function to visualize Selection Sort
 void visualizeSelectionSort(std::vector<int>& data) {
-    constexpr int delayMillis = 100; // Delay between each step in milliseconds
 
     std::cout << "Selection Sort Sorting:" << std::endl;
     for (int i = 0; i < data.size(); ++i) {
@@ -62,7 +62,7 @@ void visualizeSelectionSort(std::vector<int>& data) {
             }
         }
         std::swap(data[i], data[minIndex]);
-        std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
         system("cls"); // Clear console
         std::cout << "Selection Sort Sorting:" << std::endl;
         printBars(data);
@@ -74,7 +74,6 @@ void visualizeSelectionSort(std::vector<int>& data) {
 
 // Function to visualize Insertion Sort
 void visualizeInsertionSort(std::vector<int>& data) {
-    constexpr int delayMillis = 100; // Delay between each step in milliseconds
 
     std::cout << "Insertion Sort Sorting:" << std::endl;
     for (int i = 0; i < data.size(); ++i) {
@@ -90,7 +89,7 @@ void visualizeInsertionSort(std::vector<int>& data) {
             --j;
         }
         data[j + 1] = key;
-        std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
         system("cls"); // Clear console
         std::cout << "Insertion Sort Sorting:" << std::endl;
         printBars(data);
@@ -100,17 +99,20 @@ void visualizeInsertionSort(std::vector<int>& data) {
     std::cout << "Sorted!" << std::endl;
 }
 
-int main() {
-    // Generate random data for sorting
+void Introduction() {
+
     std::vector<int> data = { 7, 4, 5, 2, 9, 1, 3, 8, 6 };
 
     std::cout << "Select a sorting algorithm:" << std::endl;
     std::cout << "1. Bubble Sort" << std::endl;
     std::cout << "2. Selection Sort" << std::endl;
-    std::cout << "3. Insertion Sort" << std::endl;
+    std::cout << "3. Insetion Sort" << std::endl;
+    std::cout << "4. Exit" << std::endl;
+
     std::cout << "Enter your choice: ";
 
-    int choice;
+    int choice = 0;
+
     std::cin >> choice;
 
     switch (choice) {
@@ -118,14 +120,22 @@ int main() {
         visualizeBubbleSort(data);
         break;
     case 2:
-        visualizeSelectionSort(data);
+        visualizeSelectionSort(data)
         break;
     case 3:
         visualizeInsertionSort(data);
         break;
+    case 4:
+        break;
     default:
-        std::cout << "Invalid choice!" << std::endl;
+        std::cout << "\nInvalid selection. Try Again" << std::endl;
+        Introduction();
     }
+}
+
+int main() {
+    
+    Introduction();
 
     return 0;
 }
